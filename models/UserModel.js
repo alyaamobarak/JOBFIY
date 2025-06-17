@@ -18,6 +18,8 @@ const UserSchema =new mongoose.Schema({
     enum: ['user', 'admin'],
     default: 'user',
   },
+   avater:String,
+  avaterId:String,
 })
 
 UserSchema.methods.toJSON = function () {

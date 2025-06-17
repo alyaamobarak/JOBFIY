@@ -12,6 +12,11 @@ import cookieParser from 'cookie-parser';
 import userRouter from './routes/userRouter.js';
 import cors from 'cors';
 
+//public images
+import {dirname} from 'path'
+import { fileURLToPath } from 'url';
+import path from 'path'
+
 dotenv.config();
 const app = express();
 // app.use(cors());
@@ -31,6 +36,8 @@ app.use('/api/v1/users', authenticateUser, userRouter);
 // app.post('/api/v1/jobs',)
 // app.get('/api/v1/jobs/:id', );
 
+//
+const __dirname = dirname(fileURLToPath(import.meta.url));
 if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
 }
@@ -48,7 +55,7 @@ app.use(('*'), (req, res) => {
 });
 
 app.use(errorHandlerMiddleware);
-
+app.use(express.static(path.resolve(__dirname,'./public')))
 const PORT = process.env.PORT || 5000;
 
 // app.listen(PORT, () => {
