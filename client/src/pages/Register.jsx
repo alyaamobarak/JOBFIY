@@ -2,7 +2,7 @@ import React from 'react'
 import Wrapper from '../assets/wrappers/RegisterAndLoginPage'
 import { Form, redirect, useNavigation, Link } from 'react-router-dom';
 import customFetch from '../utils/customFetch'
-import { Logo, FormRow } from '../components'
+import { Logo, FormRow ,SubmitBtn} from '../components'
 import { toast } from 'react-toastify';
 
 export const action = async ({ request }) => {
@@ -51,9 +51,10 @@ const Register = () => {
         <label htmlFor="pass" className='form-lable'>password</label>
         <input type="password"  name='password' id='pass' className='form-input' required/>
       </div> */}
-        <button type='submit' className='btn btn-block' disabled={isSubmitting}>
+        {/* <button type='submit' className='btn btn-block' disabled={isSubmitting}>
 
-          {isSubmitting ? 'submitting...' : 'submit'} </button>
+          {isSubmitting ? 'submitting...' : 'submit'} </button> */}
+          <SubmitBtn formBtn/>
         <p>Already a member?<Link to='/login' className='member-btn'>Login </Link> </p>
 
       </Form>

@@ -11,6 +11,7 @@ import { authenticateUser } from './middleware/authMiddleware.js';
 import cookieParser from 'cookie-parser';
 import userRouter from './routes/userRouter.js';
 import cors from 'cors';
+import cloudinary from 'cloudinary';
 
 //public images
 import {dirname} from 'path'
@@ -56,6 +57,13 @@ app.use(('*'), (req, res) => {
 
 app.use(errorHandlerMiddleware);
 app.use(express.static(path.resolve(__dirname,'./public')))
+
+cloudinary.config({
+  cloud_name: process.env.CLOUD_NAME,
+  api_key: process.env.CLOUD_API_KEY,
+  api_secret: process.env.CLOUD_API_SECRET,
+});
+
 const PORT = process.env.PORT || 5000;
 
 // app.listen(PORT, () => {
@@ -64,6 +72,7 @@ const PORT = process.env.PORT || 5000;
 
 try {
   await mongoose.connect(process.env.MONGO_URI);
+    console.log('DB connected successfully')
   app.listen(PORT, () => {
     console.log(`server running on PORT ${PORT}....`);
   });

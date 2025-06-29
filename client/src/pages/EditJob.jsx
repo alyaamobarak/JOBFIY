@@ -1,5 +1,5 @@
 import React from 'react'
-import { FormRow, FormSelect } from '../components';
+import { FormRow, FormSelect ,SubmitBtn} from '../components';
 import Wrapper from '../assets/wrappers/DashboardFormPage';
 import { useLoaderData } from 'react-router-dom';
 import { JOB_STATUS, JOB_TyPES } from '../../../utils/constants';
@@ -34,8 +34,8 @@ const EditJob = () => {
   const { job } = useLoaderData();
   console.log(job )
 
-  const navigation = useNavigation();
-  const isSubmitting = navigation.state === 'submitting';
+  // const navigation = useNavigation();
+  // const isSubmitting = navigation.state === 'submitting';
 
   return (
     <Wrapper>
@@ -64,13 +64,15 @@ const EditJob = () => {
             defaultValue={job.jobType}
             list={Object.values(JOB_TyPES)}
           />
-          <button
+          {/* <button
             type='submit'
             className='btn btn-block form-btn '
             disabled={isSubmitting}
           >
             {isSubmitting ? 'submitting...' : 'submit'}
-          </button>
+          </button> */}
+                    <SubmitBtn formBtn/>
+
         </div>
       </Form>
     </Wrapper>
